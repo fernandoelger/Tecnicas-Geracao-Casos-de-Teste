@@ -36,74 +36,58 @@ public class DepComb {
     public int recebeAditivo(int qtdade) {
         int aux = 0;
         if (qtdade < 0) {
-            System.out.println("Quantidade Invalida");
             return -1;
         }
-        if (tAditivo + qtdade > 500) {
+        if (tAditivo + qtdade >= 500) {
             aux = 500 - tAditivo;
             tAditivo = 500;
             return aux;
-        } else if (tAditivo + qtdade < 500) {
+        } else {
             tAditivo += qtdade;
             return qtdade;
-        } else
-            tAditivo += qtdade;
-        return 0;
+        }
     }
 
     public int recebeGasolina(int qtdade) {
         int aux = 0;
         if (qtdade < 0) {
-            System.out.println("Quantidade Invalida");
             return -1;
         }
-        if (tGasolina + qtdade > 10000) {
+        if (tGasolina + qtdade >= 10000) {
             aux = 10000 - tGasolina;
             tGasolina = 10000;
             return aux;
-        } else if (tGasolina + qtdade < 10000) {
+        } else {
             tGasolina += qtdade;
             return qtdade;
-        } else
-            tGasolina += qtdade;
-        return 0;
+        }
     }
 
     public int recebeAlcool(int qtdade) {
         int aux = 0;
         if (qtdade < 0) {
-            System.out.println("Quantidade Invalida");
             return -1;
         }
-        if (qtdade > 2500) {
+        if (qtdade >= 2500) {
             aux = 2500 - (tAlcool1 + tAlcool2);
             tAlcool1 = 1250;
             tAlcool2 = 1250;
             return aux;
-        } else if (qtdade < 2500) {
+        } else {
             tAlcool1 += qtdade / 2;
             tAlcool2 += qtdade / 2;
             return qtdade;
-        } else {
-            tAlcool1 = 1250;
-            tAlcool2 = 1250;
         }
-
-        return 0;
     }
 
     public int[] encomendaCombustivel(int qtdade, boolean emerg)
     {
-        int[] encomenda;
-
         if(qtdade < 0)
         {
-           encomenda = new int[1];
+           int encomenda[] = new int[1];
            encomenda[0] = -2;
            return encomenda;
         }
-
-        encomenda = new int[4];
 
         double aditivo = tAditivo;
         double gasolina = tGasolina;
@@ -114,10 +98,10 @@ public class DepComb {
             aditivo  = aditivo  - (qtdade * 0.05);
             gasolina = gasolina - (qtdade * 0.7);
             alcool   = alcool   - (qtdade * 0.25);
-            System.out.println("aditivo: " + aditivo);
-            System.out.println("gasolina" + gasolina);
-            System.out.println("alcool" + alcool);
-            System.out.println("alcool dividido" + alcool/2);
+            //System.out.println("aditivo: " + aditivo);
+            //System.out.println("gasolina" + gasolina);
+            //System.out.println("alcool" + alcool);
+            //System.out.println("alcool dividido" + alcool/2);
 
             if(aditivo >=0 && gasolina >=0 && alcool >=0)
             {
@@ -126,13 +110,15 @@ public class DepComb {
                 tAlcool1  = (int)Math.round(alcool/2);
                 tAlcool2  = tAlcool1;
 
-                System.out.println("aditivo: " + tAditivo);
-                System.out.println("gasolina: " + tGasolina);
-                System.out.println("alcool 1: " + tAlcool1);
-                System.out.println("alcool 2: " + tAlcool2);
+                //System.out.println("aditivo: " + tAditivo);
+                //System.out.println("gasolina: " + tGasolina);
+                //System.out.println("alcool 1: " + tAlcool1);
+                //System.out.println("alcool 2: " + tAlcool2);
             }
             else
             {
+                int encomenda[] = {0,0,0}; 
+
                 if(aditivo < 0){
                     encomenda[0] = -1;
                 }
@@ -161,18 +147,25 @@ public class DepComb {
                 tGasolina = (int)Math.round(gasolina);
                 tAlcool1  = (int)Math.round(alcool/2);
                 tAlcool2  = tAlcool1;
+
+                System.out.println("\n\naditivo: " + tAditivo);
+                System.out.println("gasolina: " + tGasolina);
+                System.out.println("alcool 1: " + tAlcool1);
+                System.out.println("alcool 2: " + tAlcool2);
             }
             else
             {
-                if(aditivo < 0)
+                int encomenda[] = {0,0,0};
+
+                if(aditivo < 125)
                 {
                     encomenda[0] = -1;
                 }
-                if(gasolina < 0)
+                if(gasolina < 2500)
                 {
                     encomenda[1] = -1;
                 }
-                if(alcool < 0)
+                if(alcool < 625)
                 {
                     encomenda[2] = -1;
                 }
@@ -180,6 +173,9 @@ public class DepComb {
                 return encomenda;
             }
         }
+
+        int[] encomenda = new int[4];
+
         encomenda[0] = tAditivo;
         encomenda[1] = tGasolina;
         encomenda[2] = tAlcool1;
@@ -198,7 +194,7 @@ public class DepComb {
     {
     DepComb depComb = new DepComb(10000, 500, 1250, 1250);
     int actual[] = depComb.encomendaCombustivel(5000, true);
-    System.out.println("vetor: " + actual);
-    System.out.println("toString do objeto: \n\n" + depComb);
+    //System.out.println("vetor: " + actual);
+    //System.out.println("toString do objeto: \n\n" + depComb);
     }
 }
