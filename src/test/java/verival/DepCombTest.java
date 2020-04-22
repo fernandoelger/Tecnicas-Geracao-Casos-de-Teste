@@ -1,6 +1,5 @@
 package verival;
 
-//import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -44,7 +43,7 @@ public class DepCombTest
     }
 
     @Test
-    public void quantidadeInvalida() {
+    public void vendaInvalida() {
         depComb = new DepComb(10000, 500, 1250, 1250);
         int actual[] = depComb.encomendaCombustivel(-1, false);
         int expected[] = {-2};
@@ -103,6 +102,7 @@ public class DepCombTest
 
     //------------------ TECNICA DO VALOR LIMITE -----------------
     //------------ Método para encomendar combustível ------------
+    //--------------------- Emergencia TRUE ----------------------
 
     @Test
     public void onPointAditivoComEmergencia() {
@@ -152,7 +152,7 @@ public class DepCombTest
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    //-----------------------------------------------------------------
+    //-------------------- Emergencia FALSE ----------------------
 
     @Test
     public void onPointAditivoSemEmergencia() {
@@ -200,5 +200,32 @@ public class DepCombTest
         int actual[] = depComb.encomendaCombustivel(2501, false);
         int expected[] = {0, 0, -1};
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+    //---------------------- TESTE ESTRUTURAL --------------------
+    //----------------- Métodos de encher tanques ----------------
+
+    @Test
+    public void recebeAditivoInsuficiente() {
+        depComb = new DepComb(10000, 200, 1250, 1250);
+        int actual = depComb.recebeAditivo(100);
+        int expected = 100;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void recebeGasolinaInsuficiente() {
+        depComb = new DepComb(7000, 500, 1250, 1250);
+        int actual = depComb.recebeGasolina(2950);
+        int expected = 2950;
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void recebeAlcoolInsuficiente() {
+        depComb = new DepComb(10000, 500, 50, 50);
+        int actual = depComb.recebeAlcool(50);
+        int expected = 50;
+        Assertions.assertEquals(expected, actual);
     }
 }
