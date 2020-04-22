@@ -105,9 +105,9 @@ public class DepComb {
 
             if(aditivo >=0 && gasolina >=0 && alcool >=0)
             {
-                tAditivo  = (int)Math.round(aditivo);
-                tGasolina = (int)Math.round(gasolina);
-                tAlcool1  = (int)Math.round(alcool/2);
+                tAditivo  = (int)aditivo;
+                tGasolina = (int)gasolina;
+                tAlcool1  = (int)alcool/2;
                 tAlcool2  = tAlcool1;
 
                 //System.out.println("aditivo: " + tAditivo);
@@ -143,9 +143,9 @@ public class DepComb {
             System.out.println("alcool dividido" + alcool/2);
     
             if(aditivo >=125 && gasolina >=2500 && alcool >=625){
-                tAditivo  = (int)Math.round(aditivo);
-                tGasolina = (int)Math.round(gasolina);
-                tAlcool1  = (int)Math.round(alcool/2);
+                tAditivo  = (int)aditivo;
+                tGasolina = (int)gasolina;
+                tAlcool1  = (int)alcool/2;
                 tAlcool2  = tAlcool1;
 
                 System.out.println("\n\naditivo: " + tAditivo);
